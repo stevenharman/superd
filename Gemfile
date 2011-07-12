@@ -7,4 +7,6 @@ gem 'thin', '~> 1.2.11'
 group :development, :test do
   gem 'heroku'
   gem 'foreman'
+  gem 'rspec', '~> 2.6.0'
+  gem 'rack-test'
 end
