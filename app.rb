@@ -18,6 +18,10 @@ get '/styles.css' do
   scss :'stylesheets/styles'
 end
 
+get '/:poster' do
+  erb :poster
+end
+
 get '/' do
   erb :index
 end

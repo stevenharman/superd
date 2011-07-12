@@ -9,4 +9,5 @@ group :development, :test do
   gem 'foreman'
   gem 'rspec', '~> 2.6.0'
   gem 'rack-test'
+  gem 'capybara'
 end
