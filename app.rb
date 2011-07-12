@@ -1,5 +1,6 @@
 require 'sinatra'
+require 'erb'
 
 get '/' do
-  "Hello, Gaymien!"
+  erb :index
 end
