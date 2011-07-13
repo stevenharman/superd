@@ -2,17 +2,20 @@ require 'spec_helper'
 
 describe 'superd' do
 
-  describe 'looking at root' do
+  describe 'when visiting the root' do
     before { get '/' }
 
     it { last_response.should be_successful }
     it { last_response.body.should include("Hello, Worlds!") }
   end
 
-  describe 'looking at a specific poster' do
+  describe 'when looking at a poster' do
 
     context 'that exists', :type => :request do
-      before { visit '/foo-bar' }
+      before do
+        Catalog.any_instance.stub(:find_by_name).and_return(stub)
+        visit '/foo-bar'
+      end
 
       it 'show the poster' do
         page.should have_selector(".poster img[src='foo-bar.png']")
@@ -22,7 +25,7 @@ describe 'superd' do
     context "that doesn't exist" do
       before { get '/no-such-poster' }
 
-      xit { last_response.status.should be 404 }
+      it { last_response.status.should be 404 }
     end
 
   end

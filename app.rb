@@ -19,6 +19,11 @@ get '/styles.css' do
 end
 
 get '/:poster' do
+  catalog = Catalog.new
+  @poster = catalog.find_by_name(params[:poster])
+
+  return status 404 unless @poster
+
   erb :poster
 end
 
