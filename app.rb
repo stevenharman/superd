@@ -22,7 +22,7 @@ get '/styles.css' do
 end
 
 get '/:poster' do
-  catalog = Catalog.new
+  catalog = Catalog.new(Poster.all('public/images/posters'))
   @poster = catalog.find_by_name(params[:poster])
 
   return status 404 unless @poster
