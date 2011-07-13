@@ -5,6 +5,7 @@ describe 'superd' do
   describe 'when visiting the root' do
     before do
       @poster = Poster.new('some/path/image.gif')
+      @poster.next = @poster.previous = Poster.new('some/path/other.png')
       Catalog.any_instance.stub(:random).and_return(@poster)
       get '/'
     end
@@ -18,6 +19,7 @@ describe 'superd' do
     context 'that exists' do
       before do
         @poster = Poster.new('some/path/image.gif')
+        @poster.next = @poster.previous = Poster.new('some/path/other.png')
         Catalog.any_instance.stub(:find_by_name).and_return(@poster)
         get "/#{@poster.name}"
       end

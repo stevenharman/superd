@@ -2,6 +2,7 @@ require 'active_support/all'
 
 class Poster
   attr_reader :name, :path, :title
+  attr_accessor :next, :previous
 
   def initialize(path)
     raise ArgumentError.new('Must supply a path to the poster image') if path.blank?

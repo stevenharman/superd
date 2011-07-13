@@ -1,4 +1,5 @@
 @import "compass/reset";
+@import "compass/css3";
 @import "base";
 
 html, body {
@@ -9,9 +10,46 @@ html, body {
 	line-height: 1.5em; 
 }
 
-.poster { text-align: center; }
+a {
+  color: #0087ff;
+  text-decoration: none;
 
-.see-more { font-size: 0.8em; }
+  &:hover { text-decoration: underline; }
+}
+
+.poster {
+  margin: 0 auto;
+  position: relative;
+  width: 1008px;
+
+  .previous, .next {
+    @include opacity(0.5);
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 45%;
+
+    &:hover { @include opacity(1); }
+
+    a {
+      padding: 1em;
+      position: absolute;
+      top: 40%;
+    }
+  }
+
+  .previous {
+    left: 0;
+
+    a { left: 0; }
+  }
+  .next {
+    right: 0;
+
+    a { right: 0; }
+  }
+}
 
 /* Print styles, inlined to avoid required HTTP connection */
 @import "print";

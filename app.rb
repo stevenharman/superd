@@ -38,3 +38,11 @@ get '/' do
 
   erb :poster
 end
+
+module LinkHelpers
+  def link_to_poster(poster, content)
+    %{<a href='/#{poster.name}' title='#{poster.title}' >#{content}</a>}
+  end
+end
+
+helpers LinkHelpers

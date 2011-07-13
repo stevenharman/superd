@@ -1,4 +1,9 @@
 <article class="poster">
   <img src="<%= @poster.path %>" alt="<%= @poster.title%>" >
-  <footer class="see-more"><em>Psst...</em> refresh your browser to see more.</footer>
+  <nav>
+    <ul>
+      <li class="previous"><%= link_to_poster @poster.previous, 'Previous' %></li>
+      <li class="next"><%= link_to_poster @poster.next, 'Next' %></li>
+    </ul>
+  </nav>
 </article>
