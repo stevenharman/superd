@@ -7,7 +7,7 @@ describe 'helpers' do
 
     before do
       @poster = Poster.new("some/path/an-image.jpg")
-      @link = link_to_poster(@poster, 'link text')
+      @link = link_to_poster(@poster, 'link text', :class => 'blurgh foo', :'data-x' => '2')
     end
 
     it 'with href of poster name' do
@@ -20,6 +20,10 @@ describe 'helpers' do
 
     it 'with content' do
       @link.should include(">link text</a>")
+    end
+
+    it 'with optional attributes' do
+      @link.should include("class='blurgh foo' data-x='2'")
     end
 
   end
