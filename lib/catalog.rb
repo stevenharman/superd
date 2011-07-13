@@ -8,4 +8,8 @@ class Catalog
   def find_by_name(name)
     posters.find { |p| p.name.downcase == name.downcase }
   end
+
+  def random
+    @posters[rand(@posters.length)]
+  end
 end

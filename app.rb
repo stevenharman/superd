@@ -33,5 +33,8 @@ get '/:poster' do
 end
 
 get '/' do
-  erb :index
+  catalog = Catalog.new(Poster.all(settings.poster_path))
+  @poster = catalog.random
+
+  erb :poster
 end

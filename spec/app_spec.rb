@@ -3,10 +3,14 @@ require 'spec_helper'
 describe 'superd' do
 
   describe 'when visiting the root' do
-    before { get '/' }
+    before do
+      @poster = Poster.new('some/path/image.gif')
+      Catalog.any_instance.stub(:random).and_return(@poster)
+      get '/'
+    end
 
     it { last_response.should be_successful }
-    it { last_response.body.should include("Hello, Worlds!") }
+    it { last_response.body.should include(@poster.path) }
   end
 
   describe 'when looking at a poster' do

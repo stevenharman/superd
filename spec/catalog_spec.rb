@@ -10,20 +10,25 @@ describe Catalog do
       @catalog = Catalog.new(posters)
     end
 
-    it 'can retrieve a poster by name' do
-      @catalog.find_by_name('bar').should_not be_nil
+    it 'retrieve a poster by name' do
+      @catalog.find_by_name('bar').should be_a Poster
     end
 
-    it 'can retrieve a poster by name with mixed case' do
-      @catalog.find_by_name('BaR').should_not be_nil
+    it 'retrieve a poster by name with mixed case' do
+      @catalog.find_by_name('BaR').should be_a Poster
     end
 
-    it 'can retrieve a poster by name with wrong case' do
-      @catalog.find_by_name('baz').should_not be_nil
+    it 'retrieve a poster by name with wrong case' do
+      @catalog.find_by_name('baz').should be_a Poster
     end
 
     it 'returns nil for non-existant posters' do
       @catalog.find_by_name('no-such-poster').should be_nil
     end
+
+    it 'retrieve random poster' do
+      @catalog.random.should be_a Poster
+    end
+
   end
 end
