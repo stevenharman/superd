@@ -1,5 +1,17 @@
 @import "compass/reset";
 @import "base";
 
+html, body {
+  background-color: #000;
+  color: #444;
+  font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5em; 
+}
+
+.poster { text-align: center; }
+
+.see-more { font-size: 0.8em; }
+
 /* Print styles, inlined to avoid required HTTP connection */
 @import "print";
