@@ -13,12 +13,13 @@ describe 'superd' do
 
     context 'that exists', :type => :request do
       before do
-        Catalog.any_instance.stub(:find_by_name).and_return(stub)
-        visit '/foo-bar'
+        @poster = Poster.new('some/path/image.gif')
+        Catalog.any_instance.stub(:find_by_name).and_return(@poster)
+        visit "/#{@poster.name}"
       end
 
       it 'show the poster' do
-        page.should have_selector(".poster img[src='foo-bar.png']")
+        page.should have_selector(".poster img[src='#{@poster.path}']")
       end
     end
 

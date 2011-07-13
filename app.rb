@@ -2,6 +2,9 @@ require 'sinatra'
 require 'erb'
 require 'sass'
 require 'compass'
+require 'active_support/all'
+
+Dir[File.join(Sinatra::Application.root, 'lib/**/*.rb')].each { |f| require f }
 
 configure do
   Compass.configuration do |config|
