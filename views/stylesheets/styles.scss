@@ -51,5 +51,11 @@ a {
   }
 }
 
+.sosumi {
+  display: block;
+  font-size: 0.8em;
+  text-align: center;
+}
+
 /* Print styles, inlined to avoid required HTTP connection */
 @import "print";
