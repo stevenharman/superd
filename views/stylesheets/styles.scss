@@ -28,7 +28,7 @@ a {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 45%;
+    width: 25%;
 
     &:hover { @include opacity(1); }
 
@@ -42,7 +42,7 @@ a {
   .previous {
     left: 0;
 
-    a { left: 0; }
+    a { left: -1em; }
   }
   .next {
     right: 0;
