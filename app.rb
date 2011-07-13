@@ -10,11 +10,13 @@ configure do
   Compass.configuration do |config|
     config.project_path = File.dirname(__FILE__)
     config.sass_dir = 'views/stylesheets/'
-    config.environment = :production if ENV['RACK_ENV'] == 'production'
+    config.environment = Sinatra::Application.environment
   end
 
   set :scss, Compass.sass_engine_options
 end
+
+set :poster_path, 'public/images/posters'
 
 get '/styles.css' do
   content_type 'text/css', :charset => 'utf-8'
@@ -22,7 +24,7 @@ get '/styles.css' do
 end
 
 get '/:poster' do
-  catalog = Catalog.new(Poster.all('public/images/posters'))
+  catalog = Catalog.new(Poster.all(settings.poster_path))
   @poster = catalog.find_by_name(params[:poster])
 
   return status 404 unless @poster
