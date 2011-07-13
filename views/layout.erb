@@ -26,7 +26,7 @@
   </nav>
   <%= yield %>
 
-  <% if ENV['RACK_ENV'] == 'production' %>
+  <% if Sinatra::Application.production? %>
     <!-- mathiasbynens.be/notes/async-analytics-snippet Change UA-XXXXX-X to be your site's ID -->
     <script>
       var _gaq=[['_setAccount','UA-625384-5'],['_trackPageview']];
