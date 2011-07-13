@@ -11,15 +11,17 @@ describe 'superd' do
 
   describe 'when looking at a poster' do
 
-    context 'that exists', :type => :request do
+    context 'that exists' do
       before do
         @poster = Poster.new('some/path/image.gif')
         Catalog.any_instance.stub(:find_by_name).and_return(@poster)
-        visit "/#{@poster.name}"
+        get "/#{@poster.name}"
       end
 
+      it { last_response.should be_successful }
+
       it 'show the poster' do
-        page.should have_selector(".poster img[src='#{@poster.path}']")
+        last_response.body.should include(@poster.path)
       end
     end
 
