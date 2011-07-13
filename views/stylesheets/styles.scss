@@ -22,6 +22,8 @@ a {
   position: relative;
   width: 1008px;
 
+  img { margin-top: -2.5em; }
+
   .previous, .next {
     @include opacity(0.5);
 
