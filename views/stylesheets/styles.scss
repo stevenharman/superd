@@ -2,6 +2,8 @@
 @import "compass/css3";
 @import "base";
 
+$blueish: #0087ff;
+
 html, body {
   background-color: #000;
   color: #444;
@@ -11,7 +13,7 @@ html, body {
 }
 
 a {
-  color: #0087ff;
+  color: $blueish;
   text-decoration: none;
 
   &:hover { text-decoration: underline; }
@@ -50,6 +52,8 @@ a {
   font-size: 0.8em;
   text-align: center;
 }
+
+@import "github";
 
 /* Print styles, inlined to avoid required HTTP connection */
 @import "print";
