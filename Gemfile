@@ -8,8 +8,7 @@ gem 'puma', '~> 2.0'
 gem 'activesupport'
 
 group :development, :test do
-  gem 'heroku'
   gem 'foreman'
-  gem 'rspec', '~> 2.12'
+  gem 'rspec', '~> 2.14'
   gem 'rack-test'
 end
