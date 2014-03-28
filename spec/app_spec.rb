@@ -1,40 +1,42 @@
 require 'spec_helper'
 
 describe 'superd' do
+  let(:poster) { Poster.new('some/path/image.gif') }
+  before do
+    poster.next = poster.previous = Poster.new('some/path/other.png')
+  end
 
   describe 'when visiting the root' do
     before do
-      @poster = Poster.new('some/path/image.gif')
-      @poster.next = @poster.previous = Poster.new('some/path/other.png')
-      Catalog.any_instance.stub(:random).and_return(@poster)
+      poster.next = poster.previous = Poster.new('some/path/other.png')
+      allow_any_instance_of(Catalog).to receive(:random).and_return(poster)
       get '/'
     end
 
-    it { last_response.should be_successful }
-    it { last_response.body.should include(@poster.path) }
+    it { expect(last_response).to be_successful }
+    it { expect(last_response.body).to include(poster.path) }
   end
 
   describe 'when looking at a poster' do
-
     context 'that exists' do
       before do
-        @poster = Poster.new('some/path/image.gif')
-        @poster.next = @poster.previous = Poster.new('some/path/other.png')
-        Catalog.any_instance.stub(:find_by_name).and_return(@poster)
-        get "/#{@poster.name}"
+        allow_any_instance_of(Catalog).to receive(:find_by_name).and_return(poster)
+        get "/#{poster.name}"
       end
 
-      it { last_response.should be_successful }
+      it { expect(last_response).to be_successful }
 
       it 'show the poster' do
-        last_response.body.should include(@poster.path)
+        expect(last_response.body).to include(poster.path)
       end
     end
 
     context "that doesn't exist" do
-      before { get '/no-such-poster' }
+      before do
+        get '/no-such-poster'
+      end
 
-      it { last_response.status.should be 404 }
+      it { expect(last_response.status).to eq(404) }
     end
 
   end

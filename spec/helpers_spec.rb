@@ -5,25 +5,23 @@ describe 'helpers' do
   describe 'link_to_poster creates a link' do
     include LinkHelpers
 
-    before do
-      @poster = Poster.new("some/path/an-image.jpg")
-      @link = link_to_poster(@poster, 'link text', :class => 'blurgh foo', :'data-x' => '2')
-    end
+    subject(:link) { link_to_poster(poster, 'link text', :class => 'blurgh foo', :'data-x' => '2') }
+    let(:poster) { Poster.new("some/path/an-image.jpg") }
 
     it 'with href of poster name' do
-      @link.should include("href='/an-image'")
+      expect(link).to include("href='/an-image'")
     end
 
     it 'with poster title' do
-      @link.should include("title='An Image'")
+      expect(link).to include("title='An Image'")
     end
 
     it 'with content' do
-      @link.should include(">link text</a>")
+      expect(link).to include(">link text</a>")
     end
 
     it 'with optional attributes' do
-      @link.should include("class='blurgh foo' data-x='2'")
+      expect(link).to include("class='blurgh foo' data-x='2'")
     end
 
   end

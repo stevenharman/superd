@@ -8,24 +8,28 @@ describe Poster do
     end
 
     context 'with a path to the image' do
-      before { @poster = Poster.new('images/posters/foo-bar.png') }
+      subject(:poster) { Poster.new('images/posters/foo-bar.png') }
 
-      it { @poster.name.should == 'foo-bar' }
-      it { @poster.path.should == 'images/posters/foo-bar.png'}
-      it { @poster.title.should == 'Foo Bar' }
+      it { expect(poster.name).to eq('foo-bar') }
+      it { expect(poster.path).to eq('images/posters/foo-bar.png')}
+      it { expect(poster.title).to eq('Foo Bar') }
     end
   end
 
   describe '#all, given a path to images' do
+    subject(:posters) { Poster.all('public/images/posters/') }
+
     before do
-      Dir.stub(:glob).and_return(['public/images/posters/FOO.png', 'public/images/posters/bar.jpg', 'public/images/posters/baz.gif'])
-      @posters = Poster.all('public/images/posters/')
+      allow(Dir).to receive(:glob).and_return([
+        'public/images/posters/FOO.png',
+        'public/images/posters/bar.jpg',
+        'public/images/posters/baz.gif'])
     end
 
-    it { @posters.should have(3).items }
+    it { expect(posters.size).to eq(3) }
 
     it 'strip leading public directory from path' do
-      @posters.each { |p| p.path.should_not match(/^public\//)}
+      posters.each { |p| expect(p.path).not_to match(/^public\//)}
     end
   end
 end
