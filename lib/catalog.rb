@@ -13,6 +13,6 @@ class Catalog
   end
 
   def random
-    @posters[rand(@posters.length)]
+    posters[rand(posters.length)]
   end
 end
