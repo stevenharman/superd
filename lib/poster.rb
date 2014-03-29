@@ -21,5 +21,8 @@ class Poster
     Dir.glob(File.join(path, '*.*')).collect { |p|
       Poster.new(p.gsub(/^public\//, '/'))
     }
+
+  VisibleFile = Proc.new do |pathname|
+    pathname.file? && !pathname.basename.fnmatch?('.*')
   end
 end

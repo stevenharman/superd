@@ -41,5 +41,23 @@ describe Poster do
     it 'strip leading public directory from path' do
       posters.each { |p| expect(p.path).not_to match(/^public\//)}
     end
+
+  describe Poster::VisibleFile do
+    subject(:filter) { Poster::VisibleFile }
+    let(:fixtures) { Pathname.new(__FILE__).dirname.join('support/fixtures') }
+
+    it 'includes files' do
+      path = fixtures.join('a-file.txt')
+      expect(filter.call(path)).to be_true
+    end
+
+    it 'excludes directories' do
+      expect(filter.call(fixtures)).to be_false
+    end
+
+    it 'excludes hidden (dot) files' do
+      path = fixtures.join('.text-hidden-file')
+      expect(filter.call(path)).to be_false
+    end
   end
 end
