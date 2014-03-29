@@ -6,7 +6,7 @@ class Poster
 
   def self.all(path)
     @poster_cache ||= {}
-    @poster_cache[path] ||= FileSearchStrategy.call(path)
+    @poster_cache[path] ||= PublicFileStrategy.call(path)
   end
 
   def initialize(path)
@@ -17,10 +17,11 @@ class Poster
     @title = name.titleize
   end
 
-  FileSearchStrategy = Proc.new do |path|
-    Dir.glob(File.join(path, '*.*')).collect { |p|
-      Poster.new(p.gsub(/^public\//, '/'))
-    }
+  PublicFileStrategy = Proc.new do |path|
+    Pathname.new(path).children
+      .select(&VisibleFile)
+      .collect { |p| Poster.new(p.sub(/^public\//, '/')) }
+  end
 
   VisibleFile = Proc.new do |pathname|
     pathname.file? && !pathname.basename.fnmatch?('.*')

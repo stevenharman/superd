@@ -20,27 +20,24 @@ describe Poster do
     subject(:posters) { Poster.all('public/images/posters/') }
 
     before do
-      allow(Poster::FileSearchStrategy).to receive(:call).and_return([
+      allow(Poster::PublicFileStrategy).to receive(:call).and_return([
         Poster.new('FOO.png'), Poster.new('bar.jpg'), Poster.new('baz.gif')])
     end
 
     it { expect(posters.size).to eq(3) }
 
+
   end
 
-  describe Poster::FileSearchStrategy do
-    subject(:posters) { Poster.all('public/images/posters/') }
-
-    before do
-      allow(Dir).to receive(:glob).and_return([
-        'public/images/posters/FOO.png',
-        'public/images/posters/bar.jpg',
-        'public/images/posters/baz.gif'])
-    end
+  describe Poster::PublicFileStrategy do
+    subject(:strategy) { Poster::PublicFileStrategy.call('public/images/posters') }
+    let(:posters) { strategy.to_a }
 
     it 'strip leading public directory from path' do
-      posters.each { |p| expect(p.path).not_to match(/^public\//)}
+      expect(posters).not_to be_empty
+      posters.to_a.each { |p| expect(p.path.to_path).not_to match(/^public\//)}
     end
+  end
 
   describe Poster::VisibleFile do
     subject(:filter) { Poster::VisibleFile }
