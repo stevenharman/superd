@@ -16,16 +16,22 @@ describe Poster do
     end
   end
 
-  describe '#all, given a path to images' do
-    subject(:posters) { Poster.all('public/images/posters/') }
+  describe '::all, given a path to images' do
 
-    before do
-      allow(Poster::PublicFileStrategy).to receive(:call).and_return([
-        Poster.new('FOO.png'), Poster.new('bar.jpg'), Poster.new('baz.gif')])
+    it 'to find all posters at the path' do
+      allow(Poster::PublicFileStrategy).to receive(:call).with('public/images/posters/') {
+        [Poster.new('FOO.png'), Poster.new('bar.jpg')]
+      }
+
+      posters = Poster.all('public/images/posters/')
+      expect(posters.size).to eq(2)
     end
 
-    it { expect(posters.size).to eq(3) }
-
+    it 'caches posters for the path' do
+      expect(Poster::PublicFileStrategy).to receive(:call).with('public/images/x').once { [:poster] }
+      Poster.all('public/images/x')
+      Poster.all('public/images/x')
+    end
 
   end
 
