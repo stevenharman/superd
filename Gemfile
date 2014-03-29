@@ -11,4 +11,5 @@ group :development, :test do
   gem 'foreman'
   gem 'rspec', '~> 2.14'
   gem 'rack-test'
+  gem 'rake', '~> 10.0'
 end
