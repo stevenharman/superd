@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'helpers' do
 
   describe 'link_to_poster creates a link' do
-    include LinkHelpers
+    include App::LinkHelpers
 
     subject(:link) { link_to_poster(poster, 'link text', :class => 'blurgh foo', :'data-x' => '2') }
     let(:poster) { Poster.new("some/path/an-image.jpg") }

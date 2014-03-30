@@ -6,7 +6,7 @@ require_relative '../app.rb'
 module SinatraTestAppHelpers
   include Rack::Test::Methods
 
-  def app() Sinatra::Application end
+  def app() App end
 end
 
 RSpec.configure { |c| c.include SinatraTestAppHelpers }
