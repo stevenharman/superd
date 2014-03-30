@@ -7,7 +7,6 @@ require_relative 'lib/catalog'
 require_relative 'lib/poster'
 
 class App < Sinatra::Base
-  register Sinatra::AssetPipeline
 
   configure do
     Sprockets::Helpers.configure do |config|
@@ -15,8 +14,11 @@ class App < Sinatra::Base
     end
   end
 
-  set :poster_path, 'public/images/posters'
+  set :assets_css_compressor, :sass
   set :logging, true
+  set :poster_path, 'public/images/posters'
+
+  register Sinatra::AssetPipeline # must come after configuration
 
   get '/:poster' do
     catalog = Catalog.new(Poster.all(settings.poster_path))
