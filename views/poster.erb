@@ -2,8 +2,8 @@
   <img src="<%= @poster.path %>" alt="<%= @poster.title %>" >
   <nav>
     <ul>
-      <li><%= link_to_poster @poster.previous, '⇤ Previous', :class => 'previous' %></li>
-      <li><%= link_to_poster @poster.next, 'Next ⇥ ', :class => 'next' %></li>
+      <li><%= link_to_poster @poster.previous, '<i class="fa fa-hand-o-left"></i>Previous', class: 'previous' %></li>
+      <li><%= link_to_poster @poster.next, 'Next<i class="fa fa-hand-o-right"></i>', class: 'next' %></li>
     </ul>
   </nav>
 </article>

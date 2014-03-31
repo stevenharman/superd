@@ -37,9 +37,10 @@ class App < Sinatra::Base
   end
 
   module LinkHelpers
-    def link_to_poster(poster, content, attrs)
-      attributes = attrs.collect { |a, v| "#{a.to_s}='#{v.to_s}'" }.join(' ')
-      %{<a href='/#{poster.name}' title='#{poster.title}' #{attributes} >#{content}</a>}
+    def link_to_poster(poster, content, options = {})
+      attributes = options.collect { |o, v| "#{o.to_s}='#{v.to_s}'" }.join(' ')
+      url = url("/#{poster.name}")
+      %{<a href='#{url}' title='#{poster.title}' #{attributes} >#{content}</a>}
     end
   end
 

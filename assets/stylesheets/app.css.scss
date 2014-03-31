@@ -1,8 +1,8 @@
-@import 'bourbon/bourbon';
+@import 'variables';
 @import 'normalize';
+@import 'font-awesome/font-awesome';
+@import 'bourbon/bourbon';
 @import 'print';
-
-$blueish: #0087ff;
 @import 'github';
 
 html, body {
@@ -40,10 +40,18 @@ a {
   .previous {
     left: -1em;
     text-align: left;
+
+    i { margin-right: 0.25em; }
   }
   .next {
     right: 0;
     text-align: right;
+
+    i { margin-left: 0.25em; }
+  }
+
+  i {
+    font-size: 1.3em;
   }
 }
 
