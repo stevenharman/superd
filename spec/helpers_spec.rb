@@ -3,9 +3,18 @@ require 'spec_helper'
 describe 'helpers' do
 
   describe 'link_to_poster creates a link' do
-    include App::LinkHelpers
+    class FakeApp
+      include App::LinkHelpers
 
-    subject(:link) { link_to_poster(poster, 'link text', :class => 'blurgh foo', :'data-x' => '2') }
+      # When exectued w/in a running Sinatra app the `#url` method depends on a
+      # live request. We don't have one, so fake the whole thing.
+      def url(path)
+        path
+      end
+    end
+
+    subject(:link) { fake_app.link_to_poster(poster, 'link text', :class => 'blurgh foo', :'data-x' => '2') }
+    let(:fake_app) { FakeApp.new }
     let(:poster) { Poster.new("some/path/an-image.jpg") }
 
     it 'with href of poster name' do
