@@ -10,15 +10,16 @@ class Poster
   end
 
   def initialize(path)
-    raise ArgumentError.new('Must supply a path to the poster image') if path.blank?
+    raise ArgumentError.new('Must supply a path to the poster image') if path.nil?
 
-    @path = path
-    @name = File.basename(path, '.*')
+    path = Pathname(path)
+    @path = String(path)
+    @name = String(path.basename('.*'))
     @title = name.titleize
   end
 
   PublicFileStrategy = Proc.new do |path|
-    Pathname.new(path).children
+    Pathname(path).children
       .select(&VisibleFile)
       .collect { |p| Poster.new(p.sub(/^public\//, '/')) }
   end
