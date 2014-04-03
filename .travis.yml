@@ -1,4 +1,6 @@
 rvm:
+  - rbx-2.2
+  - rbx-2
   - rbx
 addons:
   code_climate:
