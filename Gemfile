@@ -15,3 +15,11 @@ group :development, :test do
   gem 'rack-test'
   gem 'pry'
 end
+
+group :test do
+  gem 'codeclimate-test-reporter', require: nil
+
+  # Require Simplecov explicitly. Remove this explicit dependency when
+  # the following is fixed: https://github.com/colszowka/simplecov/issues/281
+  gem 'simplecov', '~> 0.7.1'
+end

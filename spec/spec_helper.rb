@@ -1,4 +1,6 @@
 ENV['RACK_ENV'] ||= 'test'
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 
 require 'rack/test'
 require_relative '../app.rb'

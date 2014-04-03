@@ -1,3 +1,6 @@
 rvm:
   - rbx
   - 2.1.1
+addons:
+  code_climate:
+    repo_token: f4e09271cdbe83e7119bda4b13ad4d794ff9137e7572df690d9d202d9783d151
