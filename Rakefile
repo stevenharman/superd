@@ -11,4 +11,6 @@ unless ENV['RACK_ENV'] == 'production'
       t.pattern = 'spec/**/*_spec.rb'
     end
   end
+
+  task default: :spec
 end
