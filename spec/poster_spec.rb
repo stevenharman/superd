@@ -51,16 +51,16 @@ describe Poster do
 
     it 'includes files' do
       path = fixtures.join('a-file.txt')
-      expect(filter.call(path)).to be_true
+      expect(filter.call(path)).to be true
     end
 
     it 'excludes directories' do
-      expect(filter.call(fixtures)).to be_false
+      expect(filter.call(fixtures)).to be false
     end
 
     it 'excludes hidden (dot) files' do
       path = fixtures.join('.text-hidden-file')
-      expect(filter.call(path)).to be_false
+      expect(filter.call(path)).to be false
     end
   end
 end
