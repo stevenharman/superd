@@ -12,4 +12,4 @@ What we've got here, is, the result of a joke I pulled on a member of my family,
 
 ## License
 
-Its free, as in speech and beer. If it breaks, feel free to keep both pieces.
+It's free, as in speech and :beer:. If it breaks, feel free to keep both pieces.
