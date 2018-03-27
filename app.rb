@@ -7,6 +7,8 @@ require_relative 'lib/catalog'
 require_relative 'lib/poster'
 
 class App < Sinatra::Base
+  set :assets_precompile, %w(stylesheets/app.css *.eot *.svg *.ttf *.woff *.otf)
+  set :assets_css_compressor, :sass
 
   configure do
     Sprockets::Helpers.configure do |config|
@@ -14,7 +16,6 @@ class App < Sinatra::Base
     end
   end
 
-  set :assets_css_compressor, :sass
   set :logging, true
   set :poster_path, 'public/images/posters'
 
