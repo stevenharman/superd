@@ -3,18 +3,16 @@ source 'https://rubygems.org'
 ruby '2.5.0'
 
 gem 'puma', '~> 3.0'
-gem 'sinatra', '~> 1.3'
-gem 'sinatra-asset-pipeline'
+gem 'sinatra', '~> 2.0'
+gem 'sinatra-asset-pipeline', '~> 2.0'
 gem 'bourbon', '~> 4.0'
 gem 'activesupport'
-# due to a dependency issue w/sinatra-asset-pipeline, we need to lock to 10.x for now
-gem 'rake', '~> 10.0'
 
 group :development, :test do
   gem 'foreman'
   gem 'rspec', '~> 3.4'
   gem 'rack-test'
-  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do
