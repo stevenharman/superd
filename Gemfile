@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.5.0'
 
 gem 'puma', '~> 3.0'
 gem 'sinatra', '~> 1.3'
@@ -18,5 +18,5 @@ group :development, :test do
 end
 
 group :test do
-  gem 'codeclimate-test-reporter', require: nil
+  gem 'simplecov', require: false
 end
