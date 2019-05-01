@@ -1,13 +1,13 @@
-require 'sinatra/base'
-require 'sinatra/asset_pipeline'
-require 'erb'
-require 'sass'
-require 'active_support/all'
-require_relative 'lib/catalog'
-require_relative 'lib/poster'
+require "sinatra/base"
+require "sinatra/asset_pipeline"
+require "erb"
+require "sass"
+require "active_support/all"
+require_relative "lib/catalog"
+require_relative "lib/poster"
 
 class App < Sinatra::Base
-  set :assets_precompile, %w(stylesheets/app.css *.eot *.svg *.ttf *.woff *.otf)
+  set :assets_precompile, %w[stylesheets/app.css *.eot *.svg *.ttf *.woff *.otf]
   set :assets_css_compressor, :sass
 
   configure do
@@ -17,11 +17,11 @@ class App < Sinatra::Base
   end
 
   set :logging, true
-  set :poster_path, 'public/images/posters'
+  set :poster_path, "public/images/posters"
 
   register Sinatra::AssetPipeline # must come after configuration
 
-  get '/:poster' do
+  get "/:poster" do
     catalog = Catalog.new(Poster.all(settings.poster_path))
     @poster = catalog.find_by_name(params[:poster])
 
@@ -30,7 +30,7 @@ class App < Sinatra::Base
     erb :poster
   end
 
-  get '/' do
+  get "/" do
     catalog = Catalog.new(Poster.all(settings.poster_path))
     @poster = catalog.random
 
@@ -39,9 +39,9 @@ class App < Sinatra::Base
 
   module LinkHelpers
     def link_to_poster(poster, content, options = {})
-      attributes = options.collect { |o, v| "#{o.to_s}='#{v.to_s}'" }.join(' ')
+      attributes = options.collect { |o, v| "#{o}='#{v}'" }.join(" ")
       url = url("/#{poster.name}")
-      %{<a href='#{url}' title='#{poster.title}' #{attributes} >#{content}</a>}
+      %(<a href='#{url}' title='#{poster.title}' #{attributes} >#{content}</a>)
     end
   end
 

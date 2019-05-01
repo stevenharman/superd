@@ -1,4 +1,4 @@
-require 'active_support/all'
+require "active_support/all"
 
 class Poster
   attr_reader :name, :path, :title
@@ -10,21 +10,21 @@ class Poster
   end
 
   def initialize(path)
-    raise ArgumentError.new('Must supply a path to the poster image') if path.nil?
+    raise ArgumentError.new("Must supply a path to the poster image") if path.nil?
 
     path = Pathname(path)
     @path = String(path)
-    @name = String(path.basename('.*'))
+    @name = String(path.basename(".*"))
     @title = name.titleize
   end
 
-  PublicFileStrategy = Proc.new do |path|
+  PublicFileStrategy = proc { |path|
     Pathname(path).children
       .select(&VisibleFile)
-      .collect { |p| Poster.new(p.sub(/^public\//, '/')) }
-  end
+      .collect { |p| Poster.new(p.sub(/^public\//, "/")) }
+  }
 
-  VisibleFile = Proc.new do |pathname|
-    pathname.file? && !pathname.basename.fnmatch?('.*')
-  end
+  VisibleFile = proc { |pathname|
+    pathname.file? && !pathname.basename.fnmatch?(".*")
+  }
 end
