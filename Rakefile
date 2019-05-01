@@ -1,13 +1,13 @@
-require 'sinatra/asset_pipeline/task'
-require_relative 'app'
+require "sinatra/asset_pipeline/task"
+require_relative "app"
 
 Sinatra::AssetPipeline::Task.define! App
 
 begin
-  require 'rspec/core/rake_task'
+  require "rspec/core/rake_task"
   task default: :spec
 
-  desc 'Run those specs'
+  desc "Run those specs"
   RSpec::Core::RakeTask.new(:spec)
 rescue LoadError
 end
