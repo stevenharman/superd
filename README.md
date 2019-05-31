@@ -7,7 +7,7 @@ What we've got here, is, the result of a joke I pulled on a member of my family,
 ## Flair
 
 [![Build Status](https://img.shields.io/travis/stevenharman/superd.svg)](https://travis-ci.org/stevenharman/superd)
-[![Code Climate](http://img.shields.io/codeclimate/github/stevenharman/superd.svg)](https://codeclimate.com/github/stevenharman/superd)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6d09639a3aa7080ef761/maintainability)](https://codeclimate.com/github/stevenharman/superd/maintainability)
 [![Dependency Status](https://img.shields.io/gemnasium/stevenharman/superd.svg)](https://gemnasium.com/stevenharman/superd)
 
 ## License
