@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.6.3"
 
-gem "puma", "~> 3.0"
+gem "puma", "~> 4.0"
 gem "sinatra", "~> 2.0"
 gem "sinatra-asset-pipeline", "~> 2.0"
 gem "bourbon", "~> 4.0"
