@@ -5,7 +5,6 @@ ruby "2.6.5"
 gem "puma", "~> 4.0"
 gem "sinatra", "~> 2.0"
 gem "sinatra-asset-pipeline", "~> 2.0"
-gem "bourbon", "~> 4.0"
 gem "activesupport"
 
 group :development, :test do
