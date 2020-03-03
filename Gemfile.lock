@@ -32,7 +32,7 @@ GEM
     pry-byebug (3.8.0)
       byebug (~> 11.0)
       pry (~> 0.10)
-    puma (4.3.1)
+    puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.1.2)
     rack-protection (2.0.8.1)
@@ -96,7 +96,7 @@ DEPENDENCIES
   activesupport
   foreman
   pry-byebug
-  puma (~> 4.0)
+  puma (~> 4.3)
   rack-test
   rspec (~> 3.4)
   simplecov
