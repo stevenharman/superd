@@ -6,6 +6,7 @@ gem "puma", "~> 4.0"
 gem "sinatra", "~> 2.0"
 gem "sinatra-asset-pipeline", "~> 2.0"
 gem "activesupport"
+gem "barnes"
 
 group :development, :test do
   gem "foreman"
