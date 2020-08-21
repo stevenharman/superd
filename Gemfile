@@ -8,6 +8,10 @@ gem "sinatra-asset-pipeline", "~> 2.0"
 gem "activesupport"
 gem "barnes"
 
+group :production do
+  gem "newrelic_rpm"
+end
+
 group :development, :test do
   gem "foreman"
   gem "rspec", "~> 3.4"
