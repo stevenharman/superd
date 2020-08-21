@@ -10,7 +10,7 @@ describe Poster do
       subject(:poster) { Poster.new("images/posters/foo-bar.png") }
 
       it { expect(poster.name).to eq("foo-bar") }
-      it { expect(poster.path).to eq("images/posters/foo-bar.png")}
+      it { expect(poster.path).to eq("images/posters/foo-bar.png") }
       it { expect(poster.title).to eq("Foo Bar") }
     end
   end
@@ -38,7 +38,7 @@ describe Poster do
 
     it "strip leading public directory from path" do
       expect(posters).not_to be_empty
-      posters.to_a.each { |p| expect(p.path).not_to match(/^public\//)}
+      posters.to_a.each { |p| expect(p.path).not_to match(/^public\//) }
     end
   end
 
