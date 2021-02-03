@@ -1,4 +1,7 @@
+.env
+
 .DS_Store
 .sass-cache
-.env
-coverage
+
+/coverage
+/log
