@@ -1,6 +1,6 @@
 describe "helpers" do
   describe "link_to_poster creates a link" do
-    class FakeApp
+    class FakeApp # rubocop:disable Lint/ConstantDefinitionInBlock
       include App::LinkHelpers
 
       # When exectued w/in a running Sinatra app the `#url` method depends on a
