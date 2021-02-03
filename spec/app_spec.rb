@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe "superd" do
   let(:poster) { Poster.new("some/path/image.gif") }
   before do

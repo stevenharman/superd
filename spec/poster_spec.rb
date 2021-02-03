@@ -1,4 +1,4 @@
-require_relative "../lib/poster.rb"
+require_relative "../lib/poster"
 
 describe Poster do
   describe "a new poster" do

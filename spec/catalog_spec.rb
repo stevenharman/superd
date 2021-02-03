@@ -1,5 +1,5 @@
-require_relative "../lib/catalog.rb"
-require_relative "../lib/poster.rb"
+require_relative "../lib/catalog"
+require_relative "../lib/poster"
 
 describe Catalog do
   context "with posters" do

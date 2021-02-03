@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe "helpers" do
   describe "link_to_poster creates a link" do
     class FakeApp
