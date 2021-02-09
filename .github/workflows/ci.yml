@@ -5,6 +5,8 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
 
     steps:
     - uses: actions/checkout@v2
@@ -15,16 +17,9 @@ jobs:
         # ruby-version: 2.7 # Not needed with a .ruby-version file
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-    - name: Setup Code Climate test-reporter
-      run: |
-        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-        chmod +x ./cc-test-reporter
-        ./cc-test-reporter before-build
-
     - name: Build and test with RSpec
       run: bin/rspec
 
     - name: Publish code coverage
-      run: |
-        export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
-        ./cc-test-reporter after-build --id ${{secrets.CC_TEST_REPORTER_ID}}
+      uses: paambaati/codeclimate-action@v2.7.5 # Locking to specific version b/c: https://github.com/paambaati/codeclimate-action/issues/142
+

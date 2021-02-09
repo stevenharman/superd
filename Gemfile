@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.7.2"
 
-gem "puma", "~> 4.0"
+gem "puma", "~> 5.0"
 gem "sinatra", "~> 2.0"
 gem "sinatra-asset-pipeline", "~> 2.0"
 gem "activesupport"
@@ -20,8 +20,5 @@ group :development, :test do
 end
 
 group :test do
-  # Workaround for cc-test-reporter with SimpleCov 0.18.
-  # Stop upgrading SimpleCov until the following issue will be resolved.
-  # https://github.com/codeclimate/test-reporter/issues/418
-  gem "simplecov", ">= 0.17.1", "< 0.18", require: false
+  gem "simplecov", require: false
 end
