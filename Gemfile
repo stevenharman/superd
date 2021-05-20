@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.7.2"
+ruby "2.7.3" # Keep in sync with .github/workflows/ci.yml
 
 gem "puma", "~> 5.0"
 gem "sinatra", "~> 2.0"
