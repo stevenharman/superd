@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.0.3" # Keep in sync with .github/workflows/ci.yml
 
-gem "puma", "~> 5.0"
+gem "puma", "~> 5.6"
 gem "sinatra", "~> 2.0"
 gem "sinatra-asset-pipeline", "~> 2.0"
 gem "activesupport"
