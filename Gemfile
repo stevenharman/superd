@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.1.2" # Keep in sync with .github/workflows/ci.yml
 
 gem "puma", "~> 5.0"
-gem "sinatra", "~> 2.0"
+gem "sinatra", "~> 2.2"
 gem "sinatra-asset-pipeline", "~> 2.0"
 gem "activesupport"
 gem "barnes"

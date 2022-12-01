@@ -26,7 +26,7 @@ GEM
     method_source (1.0.0)
     minitest (5.15.0)
     multi_json (1.15.0)
-    mustermann (1.1.1)
+    mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     newrelic_rpm (8.7.0)
     nio4r (2.5.8)
@@ -38,8 +38,8 @@ GEM
       pry (~> 0.13.0)
     puma (5.6.4)
       nio4r (~> 2.0)
-    rack (2.2.3.1)
-    rack-protection (2.2.0)
+    rack (2.2.4)
+    rack-protection (2.2.3)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -72,10 +72,10 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    sinatra (2.2.0)
-      mustermann (~> 1.0)
+    sinatra (2.2.3)
+      mustermann (~> 2.0)
       rack (~> 2.2)
-      rack-protection (= 2.2.0)
+      rack-protection (= 2.2.3)
       tilt (~> 2.0)
     sinatra-asset-pipeline (2.2.1)
       coffee-script (~> 2.4)
@@ -90,7 +90,7 @@ GEM
     sprockets-helpers (1.4.0)
       sprockets (>= 2.2)
     statsd-ruby (1.5.0)
-    tilt (2.0.10)
+    tilt (2.0.11)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
 
@@ -107,7 +107,7 @@ DEPENDENCIES
   rack-test
   rspec (~> 3.4)
   simplecov
-  sinatra (~> 2.0)
+  sinatra (~> 2.2)
   sinatra-asset-pipeline (~> 2.0)
 
 RUBY VERSION
