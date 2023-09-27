@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby "3.1.3" # Keep in sync with .github/workflows/ci.yml
+ruby "3.1.4" # Keep in sync with .github/workflows/ci.yml
 
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.0"
 gem "sinatra", "~> 2.0"
 gem "sinatra-asset-pipeline", "~> 2.0"
 gem "activesupport"
@@ -13,7 +13,6 @@ group :production do
 end
 
 group :development, :test do
-  gem "foreman"
   gem "rspec", "~> 3.4"
   gem "rack-test"
   gem "pry-byebug"
