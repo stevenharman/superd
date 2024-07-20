@@ -8,10 +8,9 @@
   <meta name="copyright" content="Copyright by Steven Harman. All Rights Reserved." />
   <meta name="description" property="og:description" content="Super D, Inspiring the Peoples (with de-motivational posters)!">
 
-  <title>Super D, Inspiring the Peoples! <%= @poster.title %></title>
+  <title><%= @poster.title %>: Super D, Inspiring the Peoples!</title>
   <meta property="og:title" content="Super D: <%= @poster.title %>" />
   <meta property="og:type" content="article" />
-
   <meta property="og:image" content="<%= url(@poster.path) %>">
   <meta property="og:url" content="<%= url_to(poster: @poster) %>" />
 
@@ -25,7 +24,7 @@
 
   <footer class="sosumi">
     ❤️ Lovingly crafted by
-    <a href="https://ruby.social/@stevenharman" title="@stevenharman@ruby.social">@stevenharman@ruby.social</a>.
+    <a href="https://ruby.social/@stevenharman" title="@stevenharman@ruby.social">@stevenharman</a>.
   </footer>
 
   <a id="github" href="https://github.com/stevenharman/superd">
