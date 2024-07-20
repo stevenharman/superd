@@ -10,7 +10,7 @@ describe "helpers" do
       end
     end
 
-    subject(:link) { fake_app.link_to_poster(poster, "link text", class: "blurgh foo", 'data-x': "2") }
+    subject(:link) { fake_app.link_to_poster(poster, "link text", class: "blurgh foo", "data-x": "2") }
     let(:fake_app) { FakeApp.new }
     let(:poster) { Poster.new("some/path/an-image.jpg") }
 
