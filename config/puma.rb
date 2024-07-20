@@ -42,5 +42,5 @@ end
 on_worker_boot do
 end
 
-# Allow puma to be restarted by `touch`-ing the `tmp.restart.txt` file.
+# Allow puma to be restarted by `touch`-ing the `tmp/restart.txt` file.
 plugin :tmp_restart
