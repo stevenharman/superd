@@ -14,7 +14,7 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.3.6
+        ruby-version: 3.3.7
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
     - name: Build and test with RSpec
