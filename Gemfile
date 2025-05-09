@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.7" # Keep in sync with .github/workflows/ci.yml
+ruby "3.3.8" # Keep in sync with .github/workflows/ci.yml
 
 gem "puma", "~> 6.0"
 gem "sinatra", "~> 2.0"
@@ -15,7 +15,7 @@ end
 group :development, :test do
   gem "rspec", "~> 3.4"
   gem "rack-test"
-  gem "pry-byebug"
+  gem "standard", "~> 1.43"
 end
 
 group :test do
