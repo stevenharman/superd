@@ -15,7 +15,7 @@
   <meta property="og:url" content="<%= url_to(poster: @poster) %>" />
 
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <%= stylesheet_tag 'stylesheets/app' %>
+  <link rel="stylesheet" href="/stylesheets/app.css">
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
 </head>
 
@@ -32,7 +32,7 @@
     <span>Inspire the Peoples!</span>
   </a>
 
-  <% if Sinatra::Application.production? %>
+  <% if settings.production? %>
     <script src="https://cdn.usefathom.com/script.js" data-site="UJWHBZWT" data-excluded-domains="localhost" defer></script>
   <% end %>
 </body>

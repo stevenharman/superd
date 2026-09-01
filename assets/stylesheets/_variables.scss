@@ -1,2 +1,8 @@
 $blueish: #0087ff;
-$fa-font-path: "/assets" !default;
+
+// Font Awesome's stock default is "../fonts", resolved against the URL the
+// stylesheet is served from (/stylesheets/app.css) rather than its path on
+// disk. That happens to land on /fonts, but only because of how deep the CSS
+// sits. Pin it absolutely so moving the stylesheet can't silently break the
+// icons. Files live in public/fonts, served directly by Sinatra.
+$fa-font-path: "/fonts" !default;

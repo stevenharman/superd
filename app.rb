@@ -1,25 +1,26 @@
 require "sinatra/base"
-require "sinatra/asset_pipeline"
-require "erb"
-require "sass"
 require "active_support/all"
 require_relative "lib/catalog"
 require_relative "lib/poster"
 
 class App < Sinatra::Base
-  set :assets_precompile, %w[stylesheets/app.css *.eot *.svg *.ttf *.woff *.otf]
-  set :assets_css_compressor, :sass
-
-  configure do
-    Sprockets::Helpers.configure do |config|
-      config.debug = development?
-    end
-  end
+  # Bourbon 4 and Font Awesome 4 predate modern Dart Sass; silence the
+  # deprecations they trip so real warnings stay visible. Revisit if/when
+  # those vendored stylesheets are upgraded.
+  set :scss,
+    views: File.join(settings.root, "assets", "stylesheets"),
+    silence_deprecations: %w[color-functions elseif global-builtin if-function import slash-div]
 
   set :logging, true
   set :poster_path, "public/images/posters"
 
-  register Sinatra::AssetPipeline # must come after configuration
+  get "/stylesheets/:sheet.css" do
+    sheet = params[:sheet]
+    pass unless /\A[\w-]+\z/.match?(sheet)
+    pass unless File.exist?(File.join(settings.scss[:views], "#{sheet}.css.scss"))
+
+    scss :"#{sheet}.css"
+  end
 
   get "/:poster" do
     catalog = Catalog.new(Poster.all(settings.poster_path))
@@ -49,6 +50,4 @@ class App < Sinatra::Base
   end
 
   helpers LinkHelpers
-
-  run! if app_file == $0
 end

@@ -1,7 +1,4 @@
-require "sinatra/asset_pipeline/task"
 require_relative "app"
-
-Sinatra::AssetPipeline::Task.define! App
 
 begin
   require "rspec/core/rake_task"
