@@ -5,14 +5,17 @@ require "sass-embedded"
 
 # Compiles the SCSS sources into minified, fingerprinted CSS on disk.
 #
-# In production we precompile at boot so Sinatra's static file handler serves
-# the result straight from public/ - no Sass in the request path. Each file is
-# named after a digest of its own contents (app-1a2b3c4d.css) and recorded in a
+# Heroku's Ruby buildpack detects and runs `rake assets:precompile` at deploy,
+# so the built CSS ships in the slug and Sinatra's static file handler serves it
+# straight from public/, with no Sass in the request path. Each file is named
+# after a digest of its own contents (app-1a2b3c4d.css) and recorded in a
 # manifest, so the URL changes whenever the CSS does. That's what makes it safe
 # to cache the response forever; see ImmutableAssets.
 #
-# Development skips all of this and renders through the /stylesheets/:sheet.css
-# route instead, so edits show up on reload.
+# Nothing compiles at boot. If the precompiled files are missing, path_for falls
+# back to the plain name and the /stylesheets/:sheet.css route renders on the
+# fly. That's the normal path in development, where edits then show up on
+# reload, and a working fallback anywhere the rake task hasn't run.
 class Stylesheets
   # Bourbon 4 and Font Awesome 4 predate modern Dart Sass; silence the
   # deprecations they trip so real warnings stay visible. Revisit if/when
