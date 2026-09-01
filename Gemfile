@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.4.10" # Keep in sync with .github/workflows/ci.yml
 
-gem "puma", "~> 6.0"
+gem "puma", "~> 8.0"
 gem "rackup"
 gem "sinatra", "~> 4.0"
 gem "activesupport"

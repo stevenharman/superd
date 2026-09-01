@@ -11,7 +11,10 @@ require "newrelic_rpm"
 threads_count = Integer(ENV.fetch("WEB_MAX_THREADS", 5))
 threads(threads_count, threads_count)
 
-port ENV.fetch("PORT", 5000)
+# Puma 8 defaults the bind host to `::` (IPv6) when the machine has a
+# non-loopback IPv6 interface. Pin IPv4 explicitly so what we bind does not
+# depend on the host's interfaces.
+port ENV.fetch("PORT", 5000), "0.0.0.0"
 
 environment ENV.fetch("RACK_ENV", "development")
 
@@ -20,26 +23,19 @@ environment ENV.fetch("RACK_ENV", "development")
 # concurrency of the application would be max `threads` * `workers`.
 workers Integer(ENV.fetch("WEB_CONCURRENCY", 2))
 
-# Use the `preload_app!` method when specifying a `workers` number. This
-# directive tells Puma to first boot the application and load code before
-# forking the application. This takes advantage of Copy On Write process
-# behavior so workers use less memory.
-preload_app!
+# Settings that only mean anything with workers. Puma 8's `cluster` block runs
+# after the config is loaded, so it is skipped entirely when WEB_CONCURRENCY is
+# 0 and Puma stops warning that these hooks are unreachable.
+cluster do
+  # Boot the app before forking so workers share memory copy-on-write. This has
+  # been the default since Puma 7; kept explicit as documentation.
+  preload_app!
 
-# If you are preloading your application and using Active Record, it's
-# recommended that you close any connections to the database before workers
-# are forked to prevent connection leakage.
-before_fork do
-  Barnes.start
-end
-
-# The code in the `on_worker_boot` will be called if you are using clustered
-# mode by specifying a number of `workers`. After each worker process is
-# booted, this block will be run. If you are using the `preload_app!` option,
-# you will want to use this block to reconnect to any threads or connections
-# that may have been created at application boot, as Ruby cannot share
-# connections between processes.
-on_worker_boot do
+  # Start the Barnes agent in the master, before any workers are forked, so it
+  # reports dyno metrics for the whole process tree.
+  before_fork do
+    Barnes.start
+  end
 end
 
 # Allow puma to be restarted by `touch`-ing the `tmp/restart.txt` file.
