@@ -7,3 +7,6 @@
 
 /coverage
 /log
+
+# Built by `rake assets:precompile`
+/public/stylesheets

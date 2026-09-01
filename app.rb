@@ -1,23 +1,38 @@
+require "pathname"
 require "sinatra/base"
 require "active_support/all"
 require_relative "lib/catalog"
+require_relative "lib/immutable_assets"
 require_relative "lib/poster"
+require_relative "lib/stylesheets"
 
 class App < Sinatra::Base
-  # Bourbon 4 and Font Awesome 4 predate modern Dart Sass; silence the
-  # deprecations they trip so real warnings stay visible. Revisit if/when
-  # those vendored stylesheets are upgraded.
+  use ImmutableAssets
+
+  set :stylesheet_source_path, Pathname(settings.root) / "assets" / "stylesheets"
+  set :stylesheet_output_path, Pathname(settings.public_folder) / "stylesheets"
   set :scss,
-    views: File.join(settings.root, "assets", "stylesheets"),
-    silence_deprecations: %w[color-functions elseif global-builtin if-function import slash-div]
+    views: settings.stylesheet_source_path,
+    silence_deprecations: Stylesheets::SILENCED_DEPRECATIONS
 
   set :logging, true
   set :poster_path, "public/images/posters"
 
+  # Memoized so the manifest is read from disk once per process rather than
+  # once per request.
+  def self.stylesheets
+    @stylesheets ||= Stylesheets.new(
+      source_dir: settings.stylesheet_source_path,
+      output_dir: settings.stylesheet_output_path
+    )
+  end
+
+  # Only reached when there's no precompiled file in public/ - Sinatra checks
+  # static files before routes, so production never gets here.
   get "/stylesheets/:sheet.css" do
     sheet = params[:sheet]
     pass unless /\A[\w-]+\z/.match?(sheet)
-    pass unless File.exist?(File.join(settings.scss[:views], "#{sheet}.css.scss"))
+    pass unless (settings.stylesheet_source_path / "#{sheet}.css.scss").exist?
 
     scss :"#{sheet}.css"
   end
@@ -46,6 +61,10 @@ class App < Sinatra::Base
 
     def url_to(poster:)
       url("/#{poster.name}")
+    end
+
+    def stylesheet_path(name)
+      App.stylesheets.path_for(name)
     end
   end
 
