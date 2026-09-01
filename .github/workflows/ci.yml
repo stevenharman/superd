@@ -5,8 +5,6 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
 
     steps:
     - uses: actions/checkout@v7
@@ -20,9 +18,11 @@ jobs:
     - name: Build and test with RSpec
       run: bin/rspec
 
-    # v9.0.0 is this action's final release; it was archived in 2025 when Code
-    # Climate became Qlty. Moving off it means qltysh/qlty-action/coverage and
-    # a QLTY_COVERAGE_TOKEN secret.
+    # coverage/coverage.json is SimpleCov's JSON formatter output, which is
+    # what Qlty's own Ruby example uploads.
     - name: Publish code coverage
-      uses: paambaati/codeclimate-action@v9.0.0
+      uses: qltysh/qlty-action/coverage@v2
+      with:
+        token: ${{secrets.QLTY_COVERAGE_TOKEN}}
+        files: coverage/coverage.json
 
