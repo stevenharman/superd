@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.4.10" # Keep in sync with .github/workflows/ci.yml
+ruby "4.0.10" # Keep in sync with .github/workflows/ci.yml
 
 gem "puma", "~> 8.0"
 gem "rackup"

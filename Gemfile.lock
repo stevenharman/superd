@@ -183,7 +183,7 @@ DEPENDENCIES
   standard (~> 1.43)
 
 RUBY VERSION
-  ruby 3.4.10
+  ruby 4.0.10
 
 BUNDLED WITH
-  4.0.19
+  4.1.0
